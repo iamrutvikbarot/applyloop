@@ -1,0 +1,276 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --font-caveat: 'Caveat', cursive;
+  --font-kalam: 'Kalam', cursive;
+  --font-hand: 'Patrick Hand', cursive;
+  --theme-x: 50vw;
+  --theme-y: 0vh;
+  --theme-r: 100vmax;
+}
+
+/* Smooth universal transition for backgrounds, text, and borders */
+body,
+header,
+main,
+footer,
+nav,
+div,
+section,
+article,
+button,
+aside,
+span,
+h1, h2, h3, h4, h5, h6,
+p {
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              fill 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              stroke 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #e5ded2;
+  color: #1e293b;
+  font-family: var(--font-kalam), 'Comic Sans MS', cursive, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.dark body,
+html.dark body {
+  background-color: #13110d;
+  color: #f0e8db;
+}
+
+/* =========================================================
+   Modern View Transitions (Circular Ink Wave Transition)
+   ========================================================= */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 9999;
+  animation: themeCircularReveal 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes themeCircularReveal {
+  from {
+    clip-path: circle(0px at var(--theme-x) var(--theme-y));
+  }
+  to {
+    clip-path: circle(var(--theme-r) at var(--theme-x) var(--theme-y));
+  }
+}
+
+/* =========================================================
+  /* Craft & Fountain Pen Ink Scrollbar (Theme Matching)
+   ========================================================= */
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #c4b59f #f3eee3;
+}
+
+.dark * {
+  scrollbar-color: #5a4e40 #1c1814;
+}
+
+/* WebKit & Chromium (Chrome, Edge, Safari, Opera) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f4ede0;
+  border-radius: 8px;
+  border: 1px dashed rgba(180, 160, 135, 0.4);
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #1c1814;
+  border: 1px dashed rgba(120, 100, 75, 0.35);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #b8a68f 0%, #9e8972 100%);
+  border-radius: 8px;
+  border: 2px solid #f4ede0;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #5a4e40 0%, #40362a 100%);
+  border: 2px solid #1c1814;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #81725f 0%, #685947 100%);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #675a4a 0%, #5a4e40 100%);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Authentic Paper textures and ruled lines (Light: Vintage Manila / Dark: Warm Espresso Parchment) */
+.paper-sheet {
+  background-color: #fdfbf7;
+  background-image: 
+    linear-gradient(90deg, rgba(225, 112, 85, 0.18) 0px, rgba(225, 112, 85, 0.18) 2px, transparent 2px);
+  background-size: 100% 100%;
+  background-position: 28px 0;
+}
+
+.dark .paper-sheet,
+html.dark .paper-sheet {
+  background-color: #201c16;
+  background-image: 
+    linear-gradient(90deg, rgba(225, 112, 85, 0.22) 0px, rgba(225, 112, 85, 0.22) 2px, transparent 2px);
+  background-size: 100% 100%;
+  background-position: 28px 0;
+}
+
+.hand-drawn-border {
+  border-radius: 12px 14px 10px 15px / 14px 10px 14px 11px;
+}
+
+.hand-drawn-pill {
+  border-radius: 255px 25px 225px 25px/25px 225px 25px 255px;
+}
+
+.hand-drawn-box {
+  border-radius: 4px 18px 5px 16px/16px 5px 18px 4px;
+}
+
+/* Hand scribbled underline effect */
+.scribble-underline {
+  position: relative;
+  display: inline-block;
+}
+
+/* Realistic tape effect */
+.washi-tape {
+  background: rgba(255, 243, 191, 0.75);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border-left: 2px dashed rgba(200, 180, 130, 0.6);
+  border-right: 2px dashed rgba(200, 180, 130, 0.6);
+}
+
+.dark .washi-tape,
+html.dark .washi-tape {
+  background: rgba(42, 36, 27, 0.85);
+  color: #b5aa9a !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  border-left: 2px dashed rgba(120, 100, 75, 0.5);
+  border-right: 2px dashed rgba(120, 100, 75, 0.5);
+}
+
+/* Email HTML content styling */
+.email-content-container a {
+  color: #4338ca;
+  text-decoration: underline;
+  word-break: break-all;
+}
+
+.dark .email-content-container a,
+html.dark .email-content-container a {
+  color: #c4b098;
+}
+
+.email-content-container a:hover {
+  color: #312e81;
+}
+
+.dark .email-content-container a:hover,
+html.dark .email-content-container a:hover {
+  color: #e0d4c4;
+}
+
+.email-content-container table {
+  max-width: 100% !important;
+}
+
+.email-content-container img {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* Dark mode adjustments for embedded HTML content */
+.dark .email-content-container,
+html.dark .email-content-container {
+  color: #ede2d3;
+}
+
+/* Desk Theme Loading Animations */
+@keyframes penScribble {
+  0% {
+    transform: rotate(-10deg) translate(0px, 0px);
+  }
+  25% {
+    transform: rotate(12deg) translate(5px, -3px);
+  }
+  50% {
+    transform: rotate(-8deg) translate(10px, 2px);
+  }
+  75% {
+    transform: rotate(10deg) translate(5px, -2px);
+  }
+  100% {
+    transform: rotate(-10deg) translate(0px, 0px);
+  }
+}
+
+@keyframes inkPulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes sketchShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-pen-scribble {
+  animation: penScribble 1.6s ease-in-out infinite;
+}
+
+.animate-ink-pulse {
+  animation: inkPulse 1.8s ease-in-out infinite;
+}
+
+.paper-skeleton {
+  background: linear-gradient(90deg, #f5efe3 25%, #ede3d1 50%, #f5efe3 75%);
+  background-size: 200% 100%;
+  animation: sketchShimmer 1.8s ease-in-out infinite;
+}
+
+.dark .paper-skeleton,
+html.dark .paper-skeleton {
+  background: linear-gradient(90deg, #241f17 25%, #352e25 50%, #241f17 75%);
+  background-size: 200% 100%;
+}
